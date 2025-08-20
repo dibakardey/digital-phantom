@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI C2less Real-time Lab - Interactive Demo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <h1 class="header__title">AI C2less Real-time Lab</h1>
+                <div class="header__subtitle">Interactive Demo - Serverless C2 Framework</div>
+                <div class="header__campaign-id">Campaign: <span id="campaignId">-</span></div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main">
+            <div class="container">
+                <!-- Control Panel -->
+                <div class="control-panel">
+                    <div class="controls">
+                        <button id="playPauseBtn" class="btn btn--primary">
+                            <span class="play-icon">▶</span>
+                            <span class="pause-icon hidden">⏸</span>
+                            <span class="btn-text">Start Demo</span>
+                        </button>
+                        <button id="restartBtn" class="btn btn--secondary">⟲ Restart</button>
+                        <div class="speed-control">
+                            <label>Speed:</label>
+                            <select id="speedSelect" class="form-control">
+                                <option value="1">1x</option>
+                                <option value="2">2x</option>
+                                <option value="4">4x</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="demo-status">
+                        <span class="status" id="demoStatus">Ready to start</span>
+                    </div>
+                </div>
+
+                <!-- Timeline -->
+                <div class="timeline-container">
+                    <h2 class="section-title">Campaign Timeline</h2>
+                    <div class="timeline" id="timeline">
+                        <!-- Timeline items will be generated dynamically -->
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                </div>
+
+                <!-- Network Diagram -->
+                <div class="network-container">
+                    <h2 class="section-title">Network Overview</h2>
+                    <div class="network-diagram">
+                        <div class="coordinator-node">
+                            <div class="node coordinator-node__inner">
+                                <div class="node-label">Coordinator</div>
+                                <div class="node-status" id="coordinatorStatus">Idle</div>
+                            </div>
+                        </div>
+
+                        <div class="agents-container">
+                            <div class="agent-node" data-agent="agt-7f3a1">
+                                <div class="node agent-node__inner">
+                                    <div class="node-label">Agent 1</div>
+                                    <div class="node-id">agt-7f3a1</div>
+                                    <div class="node-ip">10.24.5.112</div>
+                                    <div class="node-status" id="agent1Status">Idle</div>
+                                </div>
+                            </div>
+
+                            <div class="agent-node" data-agent="agt-9b8d2">
+                                <div class="node agent-node__inner">
+                                    <div class="node-label">Agent 2</div>
+                                    <div class="node-id">agt-9b8d2</div>
+                                    <div class="node-ip">10.24.7.89</div>
+                                    <div class="node-status" id="agent2Status">Idle</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Command Terminal -->
+                <div class="terminal-container">
+                    <h2 class="section-title">Command Execution</h2>
+                    <div class="terminal" id="terminal">
+                        <div class="terminal-header">
+                            <span class="terminal-title">AI C2less RT Lab Terminal</span>
+                        </div>
+                        <div class="terminal-body" id="terminalBody">
+                            <div class="terminal-line">
+                                <span class="terminal-prompt">c2less@lab:~$</span>
+                                <span class="terminal-text">Waiting for campaign to start...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Campaign Report -->
+                <div class="report-container" id="reportContainer" style="display: none;">
+                    <h2 class="section-title">Campaign Report</h2>
+                    <div class="report-card">
+                        <div class="report-header">
+                            <h3>Campaign Summary</h3>
+                            <div class="report-status success">COMPLETED</div>
+                        </div>
+                        <div class="report-metrics">
+                            <div class="metric">
+                                <div class="metric-value" id="totalAgents">-</div>
+                                <div class="metric-label">Total Agents</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value" id="totalCommands">-</div>
+                                <div class="metric-label">Commands Executed</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value" id="successRate">-</div>
+                                <div class="metric-label">Success Rate</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value" id="campaignDuration">-</div>
+                                <div class="metric-label">Duration</div>
+                            </div>
+                        </div>
+                        <div class="report-details" id="reportDetails">
+                            <!-- Report details will be populated dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
