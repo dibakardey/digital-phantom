@@ -31,11 +31,11 @@ The following diagram illustrates the architecture of the AI-driven C2-less syst
 
 ## AI C2less Real-time Lab
 
-[![Demo](https://img.shields.io/badge/🚀-Live_Demo-blue?style=for-the-badge)](https://dibakardey.github.io/digital-phantom)
+[![Demo](https://img.shields.io/badge/🚀-Live_Demo-blue?style=for-the-badge)](https://dibakardey.github.io/digital-phantom/docs)
 
 ## 🎯 Interactive Demo
 
-**[🚀 Launch Interactive Demo](https://dibakardey.github.io/digital-phantom)**
+**[🚀 Launch Interactive Demo](https://dibakardey.github.io/digital-phantom/docs)**
 
 Experience the complete workflow of a C2 campaign execution in real-time...
 
