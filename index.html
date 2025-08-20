@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI C2less Real-time Lab - Demo</title>
+    <style>
+        body { 
+            font-family: 'Courier New', monospace; 
+            background: #0a0a0a; 
+            color: #00ff00; 
+            margin: 0; 
+            padding: 20px; 
+        }
+        .header { 
+            text-align: center; 
+            margin-bottom: 30px; 
+        }
+        .title { 
+            font-size: 2.5rem; 
+            color: #00ff00; 
+            text-shadow: 0 0 10px #00ff00; 
+            margin-bottom: 10px;
+        }
+        .subtitle { 
+            font-size: 1.2rem; 
+            color: #00dd00; 
+            margin: 10px 0; 
+        }
+        .demo-container { 
+            max-width: 1000px; 
+            margin: 0 auto; 
+            background: #1a1a1a; 
+            border: 2px solid #00ff00; 
+            border-radius: 10px; 
+            padding: 30px; 
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+        }
+        .campaign-info { 
+            background: #2a2a2a; 
+            padding: 20px; 
+            border-radius: 8px; 
+            margin-bottom: 20px; 
+            border: 1px solid #333;
+        }
+        .campaign-info h2 {
+            color: #0099ff;
+            margin-top: 0;
+        }
+        .terminal { 
+            background: #000; 
+            border: 1px solid #00ff00; 
+            border-radius: 5px; 
+            padding: 20px; 
+            margin: 20px 0; 
+            height: 400px; 
+            overflow-y: auto; 
+            box-shadow: inset 0 0 10px rgba(0, 255, 0, 0.2);
+        }
+        .terminal-line { 
+            margin: 5px 0; 
+            font-family: 'Courier New', monospace;
+        }
+        .prompt { 
+            color: #00ff00; 
+        }
+        .command { 
+            color: #0099ff; 
+        }
+        .response { 
+            color: #00dd00; 
+            margin-left: 20px; 
+        }
+        .info { 
+            color: #ffaa00; 
+        }
+        .metrics { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+            gap: 15px; 
+            margin-top: 20px; 
+        }
+        .metric { 
+            background: #2a2a2a; 
+            padding: 15px; 
+            text-align: center; 
+            border-radius: 5px; 
+            border: 1px solid #333;
+            transition: all 0.3s ease;
+        }
+        .metric:hover {
+            border-color: #00ff00;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+        }
+        .metric-value { 
+            font-size: 1.8rem; 
+            color: #00ff00; 
+            font-weight: bold;
+        }
+        .metric-label { 
+            color: #888; 
+            font-size: 0.9rem; 
+        }
+        .start-btn { 
+            background: #0099ff; 
+            color: white; 
+            border: none; 
+            padding: 15px 30px; 
+            font-size: 1.1rem; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            display: block; 
+            margin: 20px auto; 
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+        .start-btn:hover { 
+            background: #00cc00; 
+            box-shadow: 0 0 15px #00cc00; 
+            transform: translateY(-2px);
+        }
+        .start-btn:disabled {
+            background: #555;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .status { 
+            color: #00ff00; 
+            font-weight: bold;
+        }
+        .github-link {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #2a2a2a;
+            padding: 10px 15px;
+            border: 1px solid #00ff00;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #00ff00;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        .github-link:hover {
+            background: #00ff00;
+            color: #000;
+            box-shadow: 0 0 15px #00ff00;
+        }
+        @media (max-width: 768px) {
+            .title { font-size: 1.8rem; }
+            .demo-container { padding: 15px; margin: 10px; }
+            .metrics { grid-template-columns: 1fr 1fr; }
+            .github-link { position: static; display: inline-block; margin-bottom: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <a href="https://github.com/dibakardey/ai-c2less-rt-lab" class="github-link">📁 View on GitHub</a>
+    
+    <div class="header">
+        <h1 class="title">AI C2less Real-time Lab</h1>
+        <div class="subtitle">Serverless Command & Control Framework Demo</div>
+        <div style="color: #888; font-size: 0.9rem;">Interactive Campaign Execution Simulation</div>
+    </div>
+    
+    <div class="demo-container">
+        <div class="campaign-info">
+            <h2>Campaign: <span id="campaignId">cmp-2025-0819-001</span></h2>
+            <p>Status: <span class="status">COMPLETED</span></p>
+            <p>Duration: 33 minutes 27 seconds (2025-08-19)</p>
+            <p>Framework: AWS Lambda Serverless C2</p>
+        </div>
+        
+        <button class="start-btn" onclick="runDemo()">🚀 Start Campaign Simulation</button>
+        
+        <div class="terminal" id="terminal">
+            <div class="terminal-line">
+                <span class="prompt">c2less@lab:~$</span> 
+                <span style="color: white;">Click "Start Campaign Simulation" to begin demo...</span>
+            </div>
+        </div>
+        
+        <div class="metrics">
+            <div class="metric">
+                <div class="metric-value" id="agents">2</div>
+                <div class="metric-label">Total Agents</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value" id="commands">3</div>
+                <div class="metric-label">Commands Executed</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value" id="success">100%</div>
+                <div class="metric-label">Success Rate</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value" id="errors">0</div>
+                <div class="metric-label">Errors</div>
+            </div>
+        </div>
+        
+        <div style="margin-top: 30px; padding: 20px; background: #2a2a2a; border-radius: 8px; border: 1px solid #333;">
+            <h3 style="color: #0099ff; margin-top: 0;">About This Demo</h3>
+            <p style="color: #ccc; line-height: 1.6;">
+                This interactive demonstration simulates a complete campaign execution in the AI C2less Real-time Lab framework. 
+                The demo shows how serverless AWS Lambda functions coordinate to execute commands across multiple agents, 
+                collect results, and generate comprehensive reports - all without persistent C2 infrastructure.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        const campaignData = {
+            agents: [
+                {
+                    id: "agt-7f3a1", 
+                    ip: "10.24.5.112",
+                    commands: [
+                        {cmd: "ping -c 4 api.target.local", response: "4 packets transmitted, 4 received, 0% packet loss"},
+                        {cmd: "cat /etc/os-release", response: "Ubuntu 22.04.4 LTS (Jammy Jellyfish)"}
+                    ]
+                },
+                {
+                    id: "agt-9b8d2", 
+                    ip: "10.24.7.89", 
+                    commands: [{cmd: "df -h", response: "/dev/root  50G  21G  29G  42% /"}]
+                }
+            ]
+        };
+
+        function addTerminalLine(text, className = '') {
+            const terminal = document.getElementById('terminal');
+            const line = document.createElement('div');
+            line.className = 'terminal-line';
+            line.innerHTML = `<span class="${className}">${text}</span>`;
+            terminal.appendChild(line);
+            terminal.scrollTop = terminal.scrollHeight;
+        }
+
+        function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
+
+        async function runDemo() {
+            const button = document.querySelector('.start-btn');
+            button.textContent = '🔄 Demo Running...';
+            button.disabled = true;
+            
+            const terminal = document.getElementById('terminal');
+            terminal.innerHTML = '';
+            
+            // Campaign Initialization
+            addTerminalLine('[INFO] Initializing AI C2less RT Lab Campaign cmp-2025-0819-001', 'info');
+            await sleep(1200);
+            
+            addTerminalLine('[INFO] Deploying serverless infrastructure...', 'info');
+            await sleep(1500);
+            
+            addTerminalLine('[SUCCESS] ✓ AWS Lambda coordinator function deployed', 'prompt');
+            addTerminalLine('[SUCCESS] ✓ AWS Lambda agent functions deployed', 'prompt');
+            await sleep(1200);
+            
+            addTerminalLine('[INFO] Configuring VPC networking and security groups...', 'info');
+            await sleep(1000);
+            
+            addTerminalLine('[SUCCESS] ✓ Infrastructure setup complete', 'prompt');
+            await sleep(800);
+            
+            addTerminalLine('\\n[PHASE] Starting agent execution phase...', 'info');
+            await sleep(1000);
+
+            // Agent execution
+            for (const agent of campaignData.agents) {
+                addTerminalLine(`\\n[AGENT] ${agent.id} (${agent.ip}) - STATUS: ACTIVE`, 'command');
+                await sleep(800);
+                
+                for (const cmd of agent.commands) {
+                    addTerminalLine(`${agent.id}@${agent.ip}:~$ ${cmd.cmd}`, 'command');
+                    await sleep(1500);
+                    addTerminalLine(`${cmd.response}`, 'response');
+                    await sleep(1000);
+                }
+                
+                addTerminalLine(`[AGENT] ${agent.id} - STATUS: COMPLETED ✓`, 'prompt');
+                await sleep(600);
+            }
+            
+            // Campaign completion
+            await sleep(1200);
+            addTerminalLine('\\n[PHASE] Collecting agent responses...', 'info');
+            await sleep(1000);
+            addTerminalLine('[PHASE] Aggregating campaign results...', 'info');
+            await sleep(1200);
+            addTerminalLine('[PHASE] Calculating success metrics...', 'info');
+            await sleep(1000);
+            addTerminalLine('[PHASE] Generating JSON campaign report...', 'info');
+            await sleep(1500);
+            
+            addTerminalLine('\\n[CAMPAIGN] ✓ Campaign cmp-2025-0819-001 COMPLETED SUCCESSFULLY', 'prompt');
+            addTerminalLine('[METRICS] Total Agents: 2 | Commands: 3 | Success Rate: 100%', 'prompt');
+            addTerminalLine('[OUTPUT] Campaign report saved to sample_campaign_report.json', 'info');
+            
+            button.textContent = '🔄 Restart Demo';
+            button.disabled = false;
+        }
+
+        // Add some startup animation
+        window.addEventListener('load', () => {
+            document.querySelector('.demo-container').style.animation = 'fadeIn 0.8s ease-in';
+            const style = document.createElement('style');
+            style.textContent = '@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }';
+            document.head.appendChild(style);
+        });
+    </script>
+</body>
+</html>
