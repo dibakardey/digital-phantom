@@ -20,10 +20,17 @@ Instead of a fixed server, it uses **ephemeral, AI-coordinated agents** that spi
 
 The following diagram illustrates the architecture of the AI-driven C2-less system:
 
-![AI C2-Less Architecture](./docs/architecture1.png)
+![AI C2-Less Architecture](./docs/aws_architecture_diagram.png)
 
+## Worflow
+
+![AI C2-Less Worflow](./docs/ai_c2less_workflow.png)
 
 ---
+
+## Live Demo
+
+![ServerlessAiC2 Demo](./docs/demo.gif)
 
 ## 📂 Repository Structure
 ```plaintext
@@ -36,7 +43,7 @@ The following diagram illustrates the architecture of the AI-driven C2-less syst
 ├── requirements.txt   # Python dependencies
 ├── LICENSE            # MIT License
 └── .github/workflows/ # CI/CD pipeline for testing & linting
-
+```
 
 ---
 
@@ -62,7 +69,7 @@ sam build && sam deploy --guided
 5. Run Coordinator
 cd ../coordinator
 python coordinator.py
-
+```
 📊 Usage
 
 Assign tasks to agents via the Coordinator (coordinator/task_assigner.py).
