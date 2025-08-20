@@ -72,7 +72,7 @@ python coordinator.py
 ```
 📊 Usage
 
-Assign tasks to agents via the Coordinator (coordinator/task_assigner.py).
+Assign tasks to agents via the Coordinator (coordinator/coordinator.py).
 
 Monitor execution via:
 
