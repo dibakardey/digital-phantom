@@ -31,11 +31,11 @@ The following diagram illustrates the architecture of the AI-driven C2-less syst
 
 ## AI C2less Real-time Lab
 
-[![Demo](https://img.shields.io/badge/🚀-Live_Demo-blue?style=for-the-badge)](https://dibakardey.github.io/ai-c2less-rt-lab/)
+[![Demo](https://img.shields.io/badge/🚀-Live_Demo-blue?style=for-the-badge)](https://dibakardey.github.io/ai-c2less-rt-lab)
 
 ## 🎯 Interactive Demo
 
-**[🚀 Launch Interactive Demo](https://dibakardey.github.io/ai-c2less-rt-lab/)**
+**[🚀 Launch Interactive Demo](https://dibakardey.github.io/ai-c2less-rt-lab)**
 
 Experience the complete workflow of a C2 campaign execution in real-time...
 
